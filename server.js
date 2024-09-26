@@ -1,6 +1,7 @@
 const { Product } = require('./src/modelos/product')
 const { Employee } = require('./src/modelos/employee')
 const { ProductCategoryView } = require('./src/modelos/productsandcategories')
+const { Categories } = require('./src/modelos/categories')
 
 const { sequelize } = require('./src/conexion/connection')
 const { Op } = require('sequelize')
