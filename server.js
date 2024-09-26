@@ -215,6 +215,24 @@ app.put('/productos/:ProductID', async (req, res) => {
   }
 })
 
+app.delete('/productos/:ProductID', async (req, res) => {
+  try {
+    // Tomamos el parametro
+    const { ProductID } = req.params
+    // Buscamos el producto
+    const productToDelete = await Product.findByPk(ProductID)
+    // Si no encontramos el producto
+    if (!productToDelete)
+      return res.status(404).json({ error: "Producto no encontrado" })
+    // Hacemos el delete mediante sequelize
+    productToDelete.destroy()
+    // Devolvemos en la response el código 204 con mensaje vacio
+    res.status(204).send()
+  } catch (error) {
+    res.status(500).json({ error: `Ocurrio un error`, message: `error: ${error.message}` })
+  }
+})
+
 app.listen(port, () => {
   console.log(`Example app listening on http://localhost:${port}`)
 })
